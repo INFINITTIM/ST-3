@@ -75,7 +75,7 @@ TEST(TimedDoorConstruction, CustomTimeout) {
 TEST(TimedDoorConstruction, InvalidTimeout) {
     TimedDoor d1(0);
     EXPECT_EQ(d1.getTimeOut(), 1);
-    
+
     TimedDoor d2(-10);
     EXPECT_EQ(d2.getTimeOut(), 1);
 }
@@ -93,7 +93,7 @@ TEST_F(DoorFixture, AdapterThrowsWhenOpen) {
         testDoor.lock();
     });
     t.join();
-    
+
     DoorTimerAdapter adapter(testDoor);
     EXPECT_NO_THROW(adapter.Timeout());
 }
@@ -124,7 +124,7 @@ TEST(MockTest, DoorMock) {
         .Times(AtLeast(1))
         .WillRepeatedly(Return(true));
     EXPECT_CALL(mock, lock()).Times(Exactly(1));
-    
+
     mock.unlock();
     EXPECT_TRUE(mock.isDoorOpened());
     mock.lock();
@@ -157,7 +157,7 @@ TEST_F(DoorFixture, MultipleOpenCloseCycles) {
 TEST(MultipleDoorsTest, IndependentOperation) {
     TimedDoor door1(77);
     TimedDoor door2(33);
-    
+
     EXPECT_EQ(door1.getTimeOut(), 77);
     EXPECT_EQ(door2.getTimeOut(), 33);
 
@@ -168,7 +168,7 @@ TEST(MultipleDoorsTest, IndependentOperation) {
 TEST(AdapterReferenceTest, CorrectDoorReference) {
     TimedDoor door1(100);
     TimedDoor door2(200);
-    
+
     DoorTimerAdapter adapter1(door1);
     DoorTimerAdapter adapter2(door2);
 
